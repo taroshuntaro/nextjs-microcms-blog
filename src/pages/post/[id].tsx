@@ -6,6 +6,7 @@ import Layout from "@/components/layout";
 import Container from "@/components/container";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { client } from "@/lib/client";
+import { convertJST } from "@/lib/utils";
 import { useEffect } from "react";
 
 const PostDetail = (props: any) => {
@@ -18,13 +19,24 @@ const PostDetail = (props: any) => {
         <title>{props.post.title}</title>
       </Head>
       <Container>
-        <article className="markdown-body">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `${props.post.content}`,
-            }}
-          />
-        </article>
+        <section>
+          <div className="text-center">
+            <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
+              {props.post.title}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {convertJST(props.post.publishedAt)}
+            </p>
+          </div>
+          <article className="markdown-body">
+            <div
+              className="pt-10"
+              dangerouslySetInnerHTML={{
+                __html: `${props.post.content}`,
+              }}
+            />
+          </article>
+        </section>
       </Container>
     </Layout>
   );

@@ -1,20 +1,35 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { getPostDetailPath } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { getPostDetailPath, convertJST } from "@/lib/utils";
 
 const HomePosts = ({ posts }) => {
   return (
     <section>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="pt-10">
         {posts.map((post) => (
           <Card key={post.id} className="p-5">
             <CardHeader>
-              <div>
-                <img src={post.eyecatch.url} className="w-full" alt="" />
-              </div>
-              <CardTitle>{post.title}</CardTitle>
-              <a href={getPostDetailPath(post.id)}>サンプルリンク</a>
-              <CardDescription></CardDescription>
+              <a href={getPostDetailPath(post.id)}>
+                <CardTitle>{post.title}</CardTitle>
+              </a>
+              <p className="text-sm text-muted-foreground">
+                {convertJST(post.publishedAt)}
+              </p>
             </CardHeader>
+            <CardFooter>
+              {post.category.map((category) => (
+                <Badge key={category.id} variant="secondary" className="mr-2">
+                  {category.name}
+                </Badge>
+              ))}
+            </CardFooter>
           </Card>
         ))}
       </div>
