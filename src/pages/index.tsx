@@ -13,9 +13,10 @@ export default function Home(props: any) {
       <Head>
         <title>{BLOG_TITLE}</title>
       </Head>
-      <HomeImage></HomeImage>
+      <HomeImage />
       <Container>
-        <HomePosts posts={props.posts}></HomePosts>
+        {/* 記事一覧 */}
+        <HomePosts posts={props.posts} />
       </Container>
     </Layout>
   );

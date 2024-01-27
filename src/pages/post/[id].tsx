@@ -1,5 +1,5 @@
 import "github-markdown-css/github-markdown-light.css";
-import "prismjs/themes/prism-okaidia.css";
+import "prismjs/themes/prism-okaidia.min.css";
 import Prism from "prismjs";
 import Head from "next/head";
 import Layout from "@/components/layout";
@@ -20,6 +20,7 @@ const PostDetail = (props: any) => {
       </Head>
       <Container>
         <section>
+          {/* 記事タイトル */}
           <div className="text-center">
             <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
               {props.post.title}
@@ -28,6 +29,7 @@ const PostDetail = (props: any) => {
               {convertJST(props.post.publishedAt)}
             </p>
           </div>
+          {/* 記事本文 */}
           <article className="markdown-body">
             <div
               className="pt-10"

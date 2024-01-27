@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -7,14 +6,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import CategoryBadge from "./category-badge";
 import { getPostDetailPath, convertJST } from "@/lib/utils";
 
 const HomePosts = ({ posts }) => {
   return (
     <section>
-      <div className="pt-10">
+      <div className="pt-5">
         {posts.map((post) => (
-          <Card key={post.id} className="p-5">
+          <Card key={post.id} className="mb-5">
             <CardHeader>
               <a href={getPostDetailPath(post.id)}>
                 <CardTitle>{post.title}</CardTitle>
@@ -24,11 +24,7 @@ const HomePosts = ({ posts }) => {
               </p>
             </CardHeader>
             <CardFooter>
-              {post.category.map((category) => (
-                <Badge key={category.id} variant="secondary" className="mr-2">
-                  {category.name}
-                </Badge>
-              ))}
+              <CategoryBadge category={post.category} />
             </CardFooter>
           </Card>
         ))}
